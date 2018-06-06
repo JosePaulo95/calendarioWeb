@@ -1,3 +1,4 @@
+/***minhas***/
 /*******************************Calendar Top Navigation*********************************/
 div#calendar{
   margin:0px auto;
@@ -107,7 +108,7 @@ div#calendar ul.dates li.indisponivel{
     width:80px;
     height:80px;
     font-size:25px;
-    background-color: Red;
+    background-color: #E19090;
     color:#000;
     text-align:center; 
 }

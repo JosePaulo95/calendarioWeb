@@ -14,7 +14,9 @@ class Calendar {
     }
      
     /********************* PROPERTY ********************/  
-    private $dayLabels = array("Mon","Tue","Wed","Thu","Fri","Sat","Sun");
+    private $dayLabels = array("Seg","Ter","Qua","Qui","Sex","Sáb","Dom");
+
+    private $monthLabels = array("Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez");
      
     private $currentYear=0;
      
@@ -100,6 +102,7 @@ class Calendar {
                 </div>
                 ';
         return $content;
+
     }
     /********************* PRIVATE **********************/ 
     /**
@@ -128,15 +131,15 @@ class Calendar {
              
         }else{
              
-            $this->currentDate =null;
+            $this->currentDate = null;
  
-            $cellContent=null;
+            $cellContent = null;
         }
              
          
         return '<a 
                     href="#"
-                    onmousedown="marcarDia('."'".$this->currentDate."'".'); return false;"
+                    onmousedown '.$this->_funcaoMarcarAprop($this->currentDate).'"
                 >
                     <li
                         style="-moz-user-select: none; -webkit-user-select: none; -ms-user-select:none; user-select:none;-o-user-select:none;" 
@@ -150,14 +153,23 @@ class Calendar {
                     </li>
                 </a>';
     }
+    private function _funcaoMarcarAprop($data){
+        if($this->_ehDiaIndisponivel($data)){
+            return '=selecionarDiaIndisponivel('."'".$data."'".'); return false;"';
+        }else{
+            return '=marcarDia('."'".$data."'".'); return false;"';
+        }
+    }
     private function _classDiaIndisponivel($data){
-        if(in_array($data, $this->dias_indisponiveis)){
+        if($this->_ehDiaIndisponivel($data)){
             return "indisponivel";
         }else{
             return " ";
         }
     }    
-
+    private function _ehDiaIndisponivel($data){
+        return in_array($data, $this->dias_indisponiveis);
+    }
     /**
     * create navigation
     */
@@ -178,7 +190,7 @@ class Calendar {
         return
             '<div class="header">'.
                 '<a class="prev" href="#" onclick="changeMonth('."'calendar".$id_atual."'".','."'calendar".$prev_id."'".'); return false;">Prev</a>'.
-                    '<span class="title">'.date('Y M',strtotime($this->currentYear.'-'.$this->currentMonth.'-1')).'</span>'.
+                    '<span class="title">'.date('Y',strtotime($this->currentYear.'-'.$this->currentMonth.'-1')).' '.$this->monthLabels[$this->currentMonth-1].'</span>'.
                 '<a class="next" href="#" onclick="changeMonth('."'calendar".$id_atual."'".','."'calendar".$prox_id."'".'); return false;">Next</a>'.
             '</div>';
         /*
