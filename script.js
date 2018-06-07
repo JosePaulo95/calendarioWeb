@@ -14,8 +14,9 @@ function selecionarDiaIndisponivel(id){
 }
 function marcarDia(id){
 	document.getElementById("nota_caixinha").style.display = "none";
-	if(dias_marcados.includes(id)){
-		document.getElementById(id).style.backgroundColor = "#DDD";	
+	if(dias_marcados.includes(id)){//desmarca dia
+		document.getElementById(id).style.backgroundColor = "#F7F7F7";	
+		document.getElementById(id).style.color = "#000";	
 
 		let index = dias_marcados.indexOf(id);
 		dias_marcados.splice(index, 1);
@@ -23,8 +24,9 @@ function marcarDia(id){
 		var ul = document.getElementById("dynamic-list");
 		var li = document.getElementById("nota"+id);
 	    ul.removeChild(li);
-	}else{
+	}else{//marca dia
 		document.getElementById(id).style.backgroundColor = "#008000";
+		document.getElementById(id).style.color = "#F7F7F7";	
 
 		dias_marcados.push(id);
 
@@ -44,7 +46,8 @@ function diaPorExtenso(data){
 }
 function changeMonth(id_antigo, id_novo){
 	document.getElementById("nota_caixinha").style.display = "none";
-
-	document.getElementById(id_antigo).style.display = "none";
-	document.getElementById(id_novo).style.display = "block";
+	if(id_novo != "calendar-1" && id_novo != "calendar12"){
+		document.getElementById(id_antigo).style.display = "none";
+		document.getElementById(id_novo).style.display = "block";
+	}
 }
