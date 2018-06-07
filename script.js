@@ -13,18 +13,9 @@ function selecionarDiaIndisponivel(id){
 	document.getElementById("nota_"+id).style.display = "inline-block";
 }
 function marcarDia(id){
+	var valor_unt = 50;
 	document.getElementById("nota_caixinha").style.display = "none";
-	if(dias_marcados.includes(id)){//desmarca dia
-		document.getElementById(id).style.backgroundColor = "#F7F7F7";	
-		document.getElementById(id).style.color = "#000";	
-
-		let index = dias_marcados.indexOf(id);
-		dias_marcados.splice(index, 1);
-
-		var ul = document.getElementById("dynamic-list");
-		var li = document.getElementById("nota"+id);
-	    ul.removeChild(li);
-	}else{//marca dia
+	if(!dias_marcados.includes(id)){//marca dia
 		document.getElementById(id).style.backgroundColor = "#008000";
 		document.getElementById(id).style.color = "#F7F7F7";	
 
@@ -36,6 +27,20 @@ function marcarDia(id){
 	    li.appendChild(document.createTextNode(diaPorExtenso(id)));
 	    //li.appendChild(document.createTextNode(dias_marcados.length+". "+diaPorExtenso(id)));
 	    ul.prepend(li);
+
+	    document.getElementById("total").innerHTML = "Total: R$ "+(valor_unt*dias_marcados.length)+",00";
+	}else{//desmarca dia
+		document.getElementById(id).style.backgroundColor = "#F7F7F7";	
+		document.getElementById(id).style.color = "#000";	
+
+		let index = dias_marcados.indexOf(id);
+		dias_marcados.splice(index, 1);
+
+		var ul = document.getElementById("dynamic-list");
+		var li = document.getElementById("nota"+id);
+	    ul.removeChild(li);
+
+	    document.getElementById("total").innerHTML = "Total: R$ "+(valor_unt*dias_marcados.length)+",00";
 	}
 }
 function diaPorExtenso(data){

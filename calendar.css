@@ -3,7 +3,7 @@
 div#calendar{
   margin:0px auto;
   padding:0px;
-  width: 602px;
+  width: 500px;
   font-family:Helvetica, "Times New Roman", Times, serif;
 }
  
@@ -22,7 +22,7 @@ div#calendar div.header{
     position:absolute;
     left:11px;
     top:0px;
-    width:582px;
+    width:480px;
     height:40px;   
     text-align:center;
 }
@@ -73,7 +73,7 @@ div#calendar ul.label li{
     margin-right:5px;  
     float:left;
     list-style-type:none;
-    width:80px;
+    width:65px;
     height:40px;
     line-height:40px;
     vertical-align:middle;
@@ -102,9 +102,9 @@ div#calendar ul.dates li.indisponivel{
     vertical-align:middle;
     float:left;
     list-style-type:none;
-    width:80px;
-    height:80px;
-    font-size:25px;
+    width:65px;
+    height:65px;
+    font-size:20px;
     background-color: #D76B6B;
     color:#000;
     text-align:center; 
@@ -119,9 +119,9 @@ div#calendar ul.dates li{
     vertical-align:middle;
     float:left;
     list-style-type:none;
-    width:80px;
-    height:80px;
-    font-size:25px;
+    width:65px;
+    height:65px;
+    font-size:20px;
     background-color: #F7F7F7;
     color:#000;
     text-align:center; 

@@ -11,37 +11,60 @@ $calendar = new Calendar();
 echo $calendar->show();
 ?>
 </body>
-<div style="margin:0px auto;width: 602px;height: 100;">
-	<div style="margin-left: 10; display: inline-block;">
-		<div style="margin-bottom: -27">
-			<div style="border-style:solid; margin-bottom: -3; border-width:thin; background-color: #F7F7F7; width: 13;height: 13;display: inline-block;"></div>
-			<p style="display: inline-block;">- disponível</p>
+<div style="margin:0px auto;width: 33%;height: 100;">
+	<div>
+		<div style="margin-left: 10; display: inline-block;">
+			<div style="margin-bottom: -27">
+				<div style="border-style:solid; margin-bottom: -3; border-width:thin; background-color: #F7F7F7; width: 13;height: 13;display: inline-block;"></div>
+				<p style="display: inline-block;">- disponível</p>
+			</div>
+			<div style="margin-bottom: -27">
+				<div style="border-style:solid; margin-bottom: -3; border-width:thin; background-color: Green; width: 13;height: 13;display: inline-block;"></div>
+				<p style="display: inline-block;">- no carrinho</p>
+			</div>
+			<div style="margin-bottom: -27">
+				<div style="border-style:solid; margin-bottom: -3; border-width:thin; background-color: #D76B6B; width: 13;height: 13;display: inline-block;"></div>
+				<p style="display: inline-block;">- indisponível</p>
+			</div>
+			<div>
+				<div style="border-style:solid; margin-bottom: -3; border-width:thin; background-color: Blue; width: 13;height: 13;display: inline-block;"></div>
+				<p style="display: inline-block;">- esgotado</p>
+			</div>
 		</div>
-		<div style="margin-bottom: -27">
-			<div style="border-style:solid; margin-bottom: -3; border-width:thin; background-color: Green; width: 13;height: 13;display: inline-block;"></div>
-			<p style="display: inline-block;">- no carrinho</p>
+		<div id="nota_caixinha" style="display:none; background-color: #D76B6B; border-radius: 10px; width: 300;height: 100;float: right;margin:10;">
+			<p id="nota_2018-06-10" class="nota_msg" style="display: none;color: white; margin: 10;">Não estou disponível aos domingos, desculpe companheiro.</p>
+			<p id="nota_2018-07-04" class="nota_msg" style="display: none;color: white; margin: 10;">Reparo do barco</p>
 		</div>
-		<div style="margin-bottom: -27">
-			<div style="border-style:solid; margin-bottom: -3; border-width:thin; background-color: #D76B6B; width: 13;height: 13;display: inline-block;"></div>
-			<p style="display: inline-block;">- indisponível</p>
-		</div>
-		<div style="margin-bottom: -27">
-			<div style="border-style:solid; margin-bottom: -3; border-width:thin; background-color: Blue; width: 13;height: 13;display: inline-block;"></div>
-			<p style="display: inline-block;">- esgotado</p>
-		</div>
-	</div>
-	<div id="nota_caixinha" style="display:none; background-color: #D76B6B; border-radius: 10px; width: 300;height: 100;float: right;margin:10;">
-		<p id="nota_2018-06-10" class="nota_msg" style="display: none;color: white; margin: 10;">Não estou disponível aos domingos, desculpe companheiro.</p>
-		<p id="nota_2018-07-04" class="nota_msg" style="display: none;color: white; margin: 10;">Reparo do barco</p>
 	</div>
 	<div style="background-color: #FAFAFA;">
-		<h1 style=" margin-left:20; font-weight: 900; color: #008000">
+		<h1 id="total" style="display: inline-block;margin-left:20; font-weight: 900; color: #008000">
 			Total: R$ 0,00
 		</h1>
-		<button type="button" style="display: inline-block;">Avançar</button>
+		<button type="button" style="background-color: #008000; color: #FAFAFA; width:100;height:40;margin:15;float:right;display: inline-block; ">Avançar</button>
 
 		<ul id="dynamic-list">
-		
+			<li>
+				<div>
+					<p  style="display: inline-block;font-size: 18px;">
+						1. 
+					</p>
+					<div style="display: inline-block; background-color: #008000; height: 30px;width:170px;"> 
+						<select style="margin: 5">
+						  <option value="1">1 vaga</option>
+						  <option value="2">2 vagas</option>
+						  <option value="3">3 vagas</option>
+						  <option value="4">4 vagas</option>
+						</select>
+						<p style="display: inline-block;margin-top: -12;color:white;">
+							= R$ 120,00
+						</p>
+					</div>
+					<p  style="display: inline-block;font-size: 18px;">
+						Quarta, 16 de Janeiro de 2018
+					</p>
+					<button type="button" style="background-color: rgb(200,30,30); color: #FAFAFA; width:23;height:23;margin:15;float:right;display: inline-block; border-radius: 15px">X</button>	
+				</div>
+			</li>
 		</ul>
 	</div>
 </div>
