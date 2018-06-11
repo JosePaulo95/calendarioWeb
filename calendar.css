@@ -114,6 +114,22 @@ div#calendar ul.dates li.indisponivel{
     color:#000;
     text-align:center; 
 }
+div#calendar ul.dates li.esgotado{
+    margin:0px;
+    padding:0px;
+    margin-right:5px;
+    margin-top: 5px;
+    line-height:80px;
+    vertical-align:middle;
+    float:left;
+    list-style-type:none;
+    width:65px;
+    height:65px;
+    font-size:20px;
+    background-color: #ADD8E6;
+    color:#000;
+    text-align:center; 
+}
 div#calendar ul.dates li{
     box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 0 0 1px rgba(0, 0, 0, 0.08);
     margin:0px;

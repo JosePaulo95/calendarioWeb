@@ -32,6 +32,8 @@ class Calendar {
     
     private $dias_indisponiveis = array("2018-06-10", "2018-07-04");
 
+    private $dias_esgotados = array("2018-06-19");
+
     /********************* PUBLIC **********************/  
         
     /**
@@ -138,7 +140,7 @@ class Calendar {
              
          
         return '<a 
-                    href="#"
+                    style="cursor: pointer;"
                     onmousedown '.$this->_funcaoMarcarAprop($this->currentDate).'"
                 >
                     <li
@@ -153,22 +155,27 @@ class Calendar {
                     </li>
                 </a>';
     }
-    private function _funcaoMarcarAprop($data, $vagas_ocpd=2, $vagas_max=5){
+    private function _funcaoMarcarAprop($data, $vagas_ocpd=2, $vagas_max=30){
         if($this->_ehDiaIndisponivel($data)){
             return '=selecionarDiaIndisponivel('."'".$data."'".'); return false;"';
-        }else{
+        }else if(!$this->_ehDiaEsgotado($data)){
             return '=marcarDia(\''.$data.'\',\''.$vagas_ocpd.'\',\''.$vagas_max.'\'); return false;"';
         }
     }
     private function _classDiaIndisponivel($data){
         if($this->_ehDiaIndisponivel($data)){
             return "indisponivel";
-        }else{
+        }else if($this->_ehDiaEsgotado($data)){
+            return "esgotado";
+        } else{
             return " ";
         }
-    }    
+    }
     private function _ehDiaIndisponivel($data){
         return in_array($data, $this->dias_indisponiveis);
+    }
+    private function _ehDiaEsgotado($data){
+        return in_array($data, $this->dias_esgotados);
     }
     /**
     * create navigation
