@@ -11,7 +11,7 @@ $calendar = new Calendar();
 echo $calendar->show();
 ?>
 </body>
-<div style="margin:0px auto;width: 33%;height: 100;">
+<div style="margin:0px auto;width: 550px;height: 100;">
 	<div>
 		<div style="margin-left: 10; display: inline-block;">
 			<div style="margin-bottom: -27">
@@ -37,29 +37,37 @@ echo $calendar->show();
 		</div>
 	</div>
 	<div style="background-color: #FAFAFA;">
-		<h1 id="total" style="display: inline-block;margin-left:20; font-weight: 900; color: #008000">
-			Total: R$ 0,00
-		</h1>
-		<button type="button" style="background-color: #008000; color: #FAFAFA; width:100;height:40;margin:15;float:right;display: inline-block; ">Avançar</button>
-
+		<div>
+			<h1 id="total" style="display: inline-block;margin-left:20; font-weight: 900; color: #008000">
+				Total: R$ 0,00
+			</h1>
+			<button type="button" style="background-color: #008000; color: #FAFAFA; width:100;height:40;margin:15;float:right;display: inline-block; ">Avançar</button>
+		</div>
 		<ul id="dynamic-list">
 			<li>
 				<div>
-					<p  style="display: inline-block;font-size: 18px;">
+					<p class="detalheDia">
 						1. 
 					</p>
-					<div style="display: inline-block; background-color: #008000; height: 30px;width:170px;"> 
-						<select style="margin: 5">
-						  <option value="1">1 vaga</option>
-						  <option value="2">2 vagas</option>
-						  <option value="3">3 vagas</option>
-						  <option value="4">4 vagas</option>
-						</select>
-						<p style="display: inline-block;margin-top: -12;color:white;">
-							= R$ 120,00
-						</p>
+					<div style="display: inline-block;">
+						<div  style="border-style:solid;border-width: 2px;height:25px;width:120;border-color: #008000;"> 
+							<p style="color:#008000;margin-top: -1;">
+								63% já reservado
+							</p>
+						</div>
+						<div style=" background-color: #008000; height: 30px;width:170px;margin-top: -58;"> 
+							<select id="marcado_1" onchange="compraVagas(this)" style="margin: 5">
+							  <option value="1">1 vaga</option>
+							  <option value="2">2 vagas</option>
+							  <option value="3">3 vagas</option>
+							  <option value="4">4 vagas</option>
+							</select>
+							<p style="display: inline-block;margin-top: -12;color:white;">
+								= R$ 120,00
+							</p>
+						</div>
 					</div>
-					<p  style="display: inline-block;font-size: 18px;">
+					<p class="detalheDia">
 						Quarta, 16 de Janeiro de 2018
 					</p>
 					<button type="button" style="background-color: rgb(200,30,30); color: #FAFAFA; width:23;height:23;margin:15;float:right;display: inline-block; border-radius: 15px">X</button>	

@@ -24,8 +24,13 @@ function marcarDia(id){
 		var ul = document.getElementById("dynamic-list");
 	    var li = document.createElement("li");
 		li.setAttribute('id',"nota"+id);
-	    li.appendChild(document.createTextNode(diaPorExtenso(id)));
-	    //li.appendChild(document.createTextNode(dias_marcados.length+". "+diaPorExtenso(id)));
+	    
+	    var daString="<p class=\"detalheDia\">1. </p> <div style=\"display: inline-block; background-color: #008000; height: 30px;width:170px;\"><select style=\"margin: 5\"><option value=\"1\">1 vaga</option><option value=\"2\">2 vagas</option><option value=\"3\">3 vagas</option><option value=\"4\">4 vagas</option></select><p style=\"display: inline-block;margin-top: -12;color:white;\">= R$ 120,00</p></div>";
+
+	    var iDiv = document.createElement('div');
+	    iDiv.innerHTML += daString;
+
+	    li.appendChild(iDiv);
 	    ul.prepend(li);
 
 	    document.getElementById("total").innerHTML = "Total: R$ "+(valor_unt*dias_marcados.length)+",00";
@@ -40,8 +45,14 @@ function marcarDia(id){
 		var li = document.getElementById("nota"+id);
 	    ul.removeChild(li);
 
-	    document.getElementById("total").innerHTML = "Total: R$ "+(valor_unt*dias_marcados.length)+",00";
+	    atualizarPrecoTotal();
 	}
+}
+function atualizarPrecoTotal(){
+	document.getElementById("total").innerHTML = "Total: R$ "+(valor_unt*dias_marcados.length)+",00";
+}
+function maisVagas(dropdownVagas){
+
 }
 function diaPorExtenso(data){
 	var data_array = data.split("-");

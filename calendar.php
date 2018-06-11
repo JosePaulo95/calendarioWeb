@@ -153,11 +153,11 @@ class Calendar {
                     </li>
                 </a>';
     }
-    private function _funcaoMarcarAprop($data){
+    private function _funcaoMarcarAprop($data, $vagas_ocpd=2, $vagas_max=5){
         if($this->_ehDiaIndisponivel($data)){
             return '=selecionarDiaIndisponivel('."'".$data."'".'); return false;"';
         }else{
-            return '=marcarDia('."'".$data."'".'); return false;"';
+            return '=marcarDia(\''.$data.'\',\''.$vagas_ocpd.'\',\''.$vagas_max.'\'); return false;"';
         }
     }
     private function _classDiaIndisponivel($data){
@@ -189,9 +189,9 @@ class Calendar {
         
         return
             '<div class="header">'.
-                '<a class="prev" href="#" onclick="changeMonth('."'calendar".$id_atual."'".','."'calendar".$prev_id."'".'); return false;">Prev</a>'.
+                '<a class="prev" href="#" onclick="changeMonth('."'calendar".$id_atual."'".','."'calendar".$prev_id."'".'); return false;">Anterior</a>'.
                     '<span class="title">'.date('Y',strtotime($this->currentYear.'-'.$this->currentMonth.'-1')).' '.$this->monthLabels[$this->currentMonth-1].'</span>'.
-                '<a class="next" href="#" onclick="changeMonth('."'calendar".$id_atual."'".','."'calendar".$prox_id."'".'); return false;">Next</a>'.
+                '<a class="next" href="#" onclick="changeMonth('."'calendar".$id_atual."'".','."'calendar".$prox_id."'".'); return false;">Próximo</a>'.
             '</div>';
         /*
         return

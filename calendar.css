@@ -1,4 +1,9 @@
 /***minhas***/
+.detalheDia{
+    display: inline-block;
+    font-size: 18px;
+}
+
 /*******************************Calendar Top Navigation*********************************/
 div#calendar{
   margin:0px auto;
