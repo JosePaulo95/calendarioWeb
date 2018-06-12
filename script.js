@@ -5,6 +5,7 @@ var dias_marcados_vagas = [];
 var dias_marcados = [];
 var qtde_ocpd_ = [];
 var qtde_max_ = [];
+var valor_unt = 50;
 
 function selecionarDiaIndisponivel(id){
 	document.getElementById("nota_caixinha").style.display = "inline-block";
@@ -16,7 +17,6 @@ function selecionarDiaIndisponivel(id){
 	document.getElementById("nota_"+id).style.display = "inline-block";
 }
 function marcarDia(id, qtde_ocpd, qtde_max){
-	var valor_unt = 50;
 	document.getElementById("nota_caixinha").style.display = "none";
 	if(!dias_marcados.includes(id)){//marca dia
 		document.getElementById(id).style.backgroundColor = "#008000";
@@ -47,8 +47,8 @@ function marcarDia(id, qtde_ocpd, qtde_max){
 							<select id=\"marcado_"+array_id+"\" onchange=maisVagas(\"marcado_"+array_id+"\",\""+array_id+"\") style=\"display: inline-block;margin: 5\">\
 							  "+dropdown(qtde_max-qtde_ocpd, 1)+"\
 							</select>\
-							<p style=\"display: inline-block;margin-top: -12;color:white;\">\
-								= R$ 120,00\
+							<p id=\"preco_ind_marcado_"+array_id+"\" style=\"display: inline-block;margin-top: -12;color:white;\">\
+								= R$ "+valor_unt+",00\
 							</p>\
 						</div>\
 					</div>\
@@ -94,6 +94,7 @@ function add(){
 		var qtde_max = qtde_max_[i];
 		var array_id = i;
 
+
 	    var li = document.createElement("li");
 		li.setAttribute('id',"nota"+id);
 	    
@@ -110,8 +111,8 @@ function add(){
 							<select id=\"marcado_"+array_id+"\" onchange=maisVagas(\"marcado_"+array_id+"\",\""+array_id+"\") style=\"display: inline-block;margin: 5\">\
 							  "+dropdown(qtde_max-qtde_ocpd, dias_marcados_vagas[i])+"\
 							</select>\
-							<p style=\"display: inline-block;margin-top: -12;color:white;\">\
-								= R$ 120,00\
+							<p id=\"preco_ind_marcado_"+array_id+"\" style=\"display: inline-block;margin-top: -12;color:white;\">\
+								= R$ "+valor_unt+",00\
 							</p>\
 						</div>\
 					</div>\
@@ -136,7 +137,6 @@ function somaVagas(){
 	return c;
 }
 function precoTotal(){
-	var valor_unt = 50;
 	return (valor_unt*somaVagas());
 }
 function porcentagemOcpd(qtde_ocpd, qtde_max){
@@ -162,8 +162,8 @@ function dropdown(qtde_disp, id_selected){
 function maisVagas(dropdown_id, array_id){
 	var id = Number(array_id);
 	dias_marcados_vagas[id] = document.getElementById(dropdown_id).value;
+	document.getElementById("preco_ind_"+dropdown_id).innerHTML = "R$ "+(dias_marcados_vagas[id]*valor_unt)+",00";
 	document.getElementById("total").innerHTML = "Total: R$ "+(precoTotal())+",00";
-	//document.getElementById("total").innerHTML = document.getElementById("marcado_1").value;
 }
 function diaPorExtenso(data){
 	var data_array = data.split("-");
