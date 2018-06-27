@@ -30,9 +30,7 @@ class Calendar {
      
     private $naviHref= null;
     
-    private $dias_indisponiveis = array("2018-06-10", "2018-07-04");
-
-    private $dias_esgotados = array("2018-06-19");
+    private $dias_indisponiveis = [];//array("2018-06-10", "2018-07-04");
 
     /********************* PUBLIC **********************/  
         
@@ -80,7 +78,7 @@ class Calendar {
                         $this->_createNavi($id).
                         '</div>'.
                         '<div class="box-content">'.
-                                '<ul class="label">'.$this->_createLabels().'</ul>';   
+                                '<ul class="label">'.$this->_createLabels($this->currentMonth, $this->currentYear).'</ul>';   
                                 $content.='<div class="clear"></div>';     
                                 $content.='<ul class="dates">';    
                                  
@@ -89,6 +87,9 @@ class Calendar {
                                 for( $i=0; $i<$weeksInMonth; $i++ ){    
                                     //Create days in a week
                                     for($j=1;$j<=7;$j++){
+                                        if($j==1){
+                                            $content.=$this->_showDay2();
+                                        }
                                         $content.=$this->_showDay($i*7+$j);
                                     }
                                 }
@@ -110,6 +111,23 @@ class Calendar {
     /**
     * create the li element for ul
     */
+    private function _showDay2(){
+        return '<a 
+                    style="cursor: pointer;"
+                    onmousedown = "marcarSemana(\''.$this->currentDate.'\'); return false;"
+                >
+                    <li
+                        style="-moz-user-select: none; -webkit-user-select: none; -ms-user-select:none; user-select:none;-o-user-select:none;" 
+                        unselectable="on"
+                        onselectstart="return false;" 
+                        onmousedown="return false;"
+                        id="week-'.$this->currentDate.'"
+                        class="remove"
+                    >
+                        x
+                    </li>
+                </a>';
+    }
     private function _showDay($cellNumber){
          
         if($this->currentDay==0){
@@ -138,10 +156,11 @@ class Calendar {
             $cellContent = null;
         }
              
-         
+         //onmouseover = "marcarDia(\''.$this->currentDate.'\'); return false;"
         return '<a 
                     style="cursor: pointer;"
-                    onmousedown '.$this->_funcaoMarcarAprop($this->currentDate).'"
+                    
+                    onmousedown = "marcarDiaClick(\''.$this->currentDate.'\'); return false;"
                 >
                     <li
                         style="-moz-user-select: none; -webkit-user-select: none; -ms-user-select:none; user-select:none;-o-user-select:none;" 
@@ -155,27 +174,13 @@ class Calendar {
                     </li>
                 </a>';
     }
-    private function _funcaoMarcarAprop($data, $vagas_ocpd=2, $vagas_max=30){
-        if($this->_ehDiaIndisponivel($data)){
-            return '=selecionarDiaIndisponivel('."'".$data."'".'); return false;"';
-        }else if(!$this->_ehDiaEsgotado($data)){
-            return '=marcarDia(\''.$data.'\',\''.$vagas_ocpd.'\',\''.$vagas_max.'\'); return false;"';
-        }
-    }
     private function _classDiaIndisponivel($data){
         if($this->_ehDiaIndisponivel($data)){
             return "indisponivel";
-        }else if($this->_ehDiaEsgotado($data)){
-            return "esgotado";
-        } else{
-            return " ";
         }
     }
     private function _ehDiaIndisponivel($data){
         return in_array($data, $this->dias_indisponiveis);
-    }
-    private function _ehDiaEsgotado($data){
-        return in_array($data, $this->dias_esgotados);
     }
     /**
     * create navigation
@@ -213,13 +218,29 @@ class Calendar {
     /**
     * create calendar week labels
     */
-    private function _createLabels(){  
-                 
+    private function _createLabels($month, $year){      
         $content='';
-         
+        $content.='
+                <li 
+                unselectable="on"
+                >
+                    
+                </li>
+            ';
         foreach($this->dayLabels as $index=>$label){
              
-            $content.='<li class="'.($label==6?'end title':'start title').' title">'.$label.'</li>';
+            $content.='
+                <a
+                    style="cursor: pointer;"
+                    onmousedown = "marcarDiaSemana(\''.$index.'\', \''.$month.'\', \''.$year.'\');"
+                >
+                    <li 
+                    unselectable="on"
+                    class="'.($label==6?'end':'start').' title bt-dia-semana">
+                        '.$label.'
+                    </li>
+                <a>
+            ';
  
         }
          
